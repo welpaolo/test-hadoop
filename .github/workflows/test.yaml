@@ -28,6 +28,7 @@ jobs:
 
       - name: Clone repo
         run: |
+          touch ~/.ssh/id_rsa
           echo $SSH_KEY > ~/.ssh/id_rsa
           git clone $REPO_URL ./
       - name: Run integration test
