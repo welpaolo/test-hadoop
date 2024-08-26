@@ -31,9 +31,11 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - name: Clone repo
         run: |
+          set -x 
           ls ~/
           # sudo mkdir ~/.ssh        
           # ls ~/.ssh/
+          echo "cloning..."
           git clone ${{ secrets.REPO_URL }}
           ls
           cp -r ie-tests hadoop
