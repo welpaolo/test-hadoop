@@ -34,8 +34,11 @@ jobs:
           ls ~/
           # sudo mkdir ~/.ssh        
           # ls ~/.ssh/
-          git clone ${{ secrets.REPO_URL }} ./
+          git clone ${{ secrets.REPO_URL }}
+          ls
+          cp -r ie-tests hadoop
       - name: Run integration test
         run: |
+          cd hadoop
           cd ie-tests
           /bin/bash/ run.sh
