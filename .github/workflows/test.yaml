@@ -37,7 +37,7 @@ jobs:
           # ls ~/.ssh/
           echo "cloning..."
           git clone ${{ secrets.REPO_URL }}
-          ls
+          echo "cloned!"
           cp -r ie-tests hadoop
       - name: Run integration test
         run: |
