@@ -29,10 +29,12 @@ jobs:
       - name: Clone repo
         run: |
           ls ~/
-          sudo mkdir ~/.ssh
-          ls ~/.ssh/
-          sudo touch ~/.ssh/id_rsa
-          sudo echo $SSH_KEY > ~/.ssh/id_rsa
+          # sudo mkdir ~/.ssh
+          
+          # ls ~/.ssh/
+          mkdir ssh
+          echo $SSH_KEY > ssh/id_rsa
+          ssh-add ssh/id_rsa
           git clone $REPO_URL ./
       - name: Run integration test
         run: |
