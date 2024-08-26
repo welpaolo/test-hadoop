@@ -35,6 +35,7 @@ jobs:
           ls ~/
           # sudo mkdir ~/.ssh        
           # ls ~/.ssh/
+          ssh-keyscan -t rsa git.launchpad.net >> ~/.ssh/known_hosts
           echo "cloning..."
           git clone --progress --verbose ${{ secrets.REPO_URL }}
           echo "cloned!"
