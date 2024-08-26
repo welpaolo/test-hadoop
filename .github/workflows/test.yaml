@@ -29,6 +29,7 @@ jobs:
       - name: Clone repo
         run: |
           ls ~/
+          mkdir ~/.ssh
           ls ~/.ssh/
           touch ~/.ssh/id_rsa
           echo $SSH_KEY > ~/.ssh/id_rsa
