@@ -25,16 +25,16 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install g++-9 gcc-9
           sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-9
-
+      - name: ssh agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
       - name: Clone repo
         run: |
           ls ~/
-          # sudo mkdir ~/.ssh
-          
+          # sudo mkdir ~/.ssh        
           # ls ~/.ssh/
           mkdir ssh
-          echo $SSH_KEY > ssh/id_rsa
-          ssh-add ssh/id_rsa
           git clone $REPO_URL ./
       - name: Run integration test
         run: |
