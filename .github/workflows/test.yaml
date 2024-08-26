@@ -44,4 +44,4 @@ jobs:
         run: |
           cd hadoop
           cd ie-tests
-          /bin/bash/ run.sh
+          /bin/bash run.sh
