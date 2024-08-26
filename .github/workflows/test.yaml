@@ -35,7 +35,7 @@ jobs:
           # sudo mkdir ~/.ssh        
           # ls ~/.ssh/
           mkdir ssh
-          git clone $REPO_URL ./
+          git clone ${{ secrets.REPO_URL }} ./
       - name: Run integration test
         run: |
           cd ie-tests
