@@ -25,7 +25,7 @@ jobs:
           echo "matrix=[\"${input//,/\",\"}\"]" >> $GITHUB_OUTPUT
           echo "[\"${input//,/\",\"}\"]"
     outputs:
-      matrix: ${{ steps.setup_matrix.matrix }}
+      matrix: ${{ steps.setup_matrix.outputs.matrix }}
 
   test:
     needs: prepare_matrix
