@@ -41,6 +41,7 @@ jobs:
       - name: Install dependencies
         run: |
           m=${{needs.prepare_matrix.outputs.matrix}}
+          echo ${{needs.prepare_matrix.outputs.matrix}}
           echo "m: $m"
           b=${{matrix.branch}}
           echo "Branch: $b"
