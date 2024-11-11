@@ -24,6 +24,8 @@ jobs:
           input=${{ inputs.branches }}
           echo "matrix=[\"${input//,/\",\"}\"]" > $GITHUB_OUTPUT
           echo "[\"${input//,/\",\"}\"]"
+    outputs:
+      matrix: ${{ steps.setup_matrix.matrix }}
 
   test:
     needs: prepare_matrix
@@ -38,7 +40,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo "m: ${{needs.prepare_matrix.outputs.matrix}}"
+          m=${{needs.prepare_matrix.outputs.matrix}}
+          echo "m: $m"
           b=${{matrix.branch}}
           echo "Branch: $b"
           echo "matrix: $matrix"
