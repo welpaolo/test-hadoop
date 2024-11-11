@@ -43,6 +43,7 @@ jobs:
           m=${{needs.prepare_matrix.outputs.matrix}}
           echo ${{needs.prepare_matrix.outputs.matrix}}
           echo "m: $m"
+          echo $GITHUB_OUTPUT
           b=${{matrix.branch}}
           echo "Branch: $b"
           echo "matrix: $matrix"
