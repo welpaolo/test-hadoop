@@ -15,7 +15,7 @@ on:
         default: 'lp-3.3.6,lp-3.3.6,test-branch'
 
 jobs:
-  prepare-matrix:
+  prepare_matrix:
     name: Prepare matrix
     runs-on: ubuntu-22.04
     steps:
@@ -23,16 +23,15 @@ jobs:
         run: |
           input=${{ inputs.branches }}
           echo "matrix=[\"${input//,/\",\"}\"]" >> $GITHUB_OUTPUT
-
+          echo "[\"${input//,/\",\"}\"]"
 
   test:
-    needs: prepare-matrix
+    needs: prepare_matrix
     runs-on: ubuntu-22.04
-    timeout-minutes: 1440
+    timeout-minutes: 60
     strategy:
-      fail-fast: false
       matrix:
-        branch: ${{ fromJson(needs.setup_matrix.outputs.matrix) }}
+        branch: ${{ fromJson(needs.prepare_matrix.outputs.matrix) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
