@@ -22,7 +22,7 @@ jobs:
       - id: setup_matrix
         run: |
           input=${{ inputs.branches }}
-          echo "matrix=[\"${input//,/\",\"}\"]" >> $GITHUB_OUTPUT
+          echo "matrix=[\"${input//,/\",\"}\"]" > $GITHUB_OUTPUT
           echo "[\"${input//,/\",\"}\"]"
 
   test:
