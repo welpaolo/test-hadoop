@@ -1,0 +1,42 @@
+name: Run tests
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_call:
+  # pull_request:
+  workflow_dispatch:
+    inputs:
+      branches:
+        description: 'Comma-separated list of branches to test'
+        required: true
+        default: 'lp-3.3.6,lp-3.3.6,test-branch'
+
+jobs:
+  prepare-matrix:
+    name: Prepare matrix
+    runs-on: ubuntu-22.04
+    steps:
+      - id: setup_matrix
+        run: |
+          input=${{ inputs.branches }}
+          echo "matrix=[\"${input//,/\",\"}\"]" >> $GITHUB_OUTPUT
+
+
+  test:
+    needs: prepare-matrix
+    runs-on: ubuntu-22.04
+    timeout-minutes: 1440
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: ${{ fromJson(needs.setup_matrix.outputs.matrix) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          echo "Branch: $branch"
